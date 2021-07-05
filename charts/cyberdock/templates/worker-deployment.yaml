@@ -29,9 +29,6 @@ spec:
       containers:
         - args:
             - celery
-            - --workdir=cyberblade_project
-            - -A
-            - cyberblade_project
             - worker
             - -l
             - info

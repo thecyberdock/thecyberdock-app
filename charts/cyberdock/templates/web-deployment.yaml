@@ -27,7 +27,10 @@ spec:
       creationTimestamp: null
     spec:
       containers:
-        - env:
+        - args:
+            - python
+            - runner.py
+          env:
             - name: SECRET_KEY
               value: {{ .Values.cyberdock.SECRET_KEY }}
             - name: DATABASE_URL

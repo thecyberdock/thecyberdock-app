@@ -13,6 +13,8 @@ cyberdock:
   nodePort: 31525
   image: thecyberdock/thecyberdock-app
   tag: latest
+  HOST: 127.0.0.1
+  PORT: 8000
   SECRET_KEY: example
   REDIS_URL: redis://example/redis
   ELASTIC_URL: https://elastic.example.com/

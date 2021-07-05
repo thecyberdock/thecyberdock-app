@@ -39,6 +39,10 @@ spec:
               value: {{.Values.cyberdock.ELASTIC_URL}}
             - name: REDIS_URL
               value: {{.Values.cyberdock.REDIS_URL}}
+            - name: PORT
+              value: {{.Values.cyberdock.PORT | quote }}
+            - name: HOST
+              value: {{.Values.cyberdock.HOST | quote }}
           image: {{ .Values.cyberdock.image }}:{{ .Values.cyberdock.tag }}
           imagePullPolicy: Always
           name: cyberdock-web

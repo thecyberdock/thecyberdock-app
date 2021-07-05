@@ -40,13 +40,11 @@ spec:
             - name: REDIS_URL
               value: {{.Values.cyberdock.REDIS_URL}}
           image: {{ .Values.cyberdock.image }}:{{ .Values.cyberdock.tag }}
-          imagePullPolicy: ""
+          imagePullPolicy: Always
           name: cyberdock-web
           ports:
             - containerPort: 8000
           resources: {}
       restartPolicy: Always
-      imagePullSecrets:
-        - name: regcred
       serviceAccountName: ""
 status: {}

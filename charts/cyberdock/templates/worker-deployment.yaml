@@ -27,14 +27,9 @@ spec:
         app: cyberdock-worker
     spec:
       containers:
-        - args:
-            - celery
-            - -A cyberblade_project.celery
-            - worker
-            - -l
-            - info
-            - -Q
-            - cyberblade
+        - command:
+            - bash
+            - runselery.sh
           env:
             - name: SECRET_KEY
               value: {{ .Values.cyberdock.SECRET_KEY }}
@@ -45,7 +40,7 @@ spec:
             - name: REDIS_URL
               value: {{.Values.cyberdock.REDIS_URL}}
           image: {{ .Values.cyberdock.image }}:{{ .Values.cyberdock.tag }}
-          imagePullPolicy: ""
+          imagePullPolicy: Always
           name: worker
           resources: {}
       restartPolicy: Always

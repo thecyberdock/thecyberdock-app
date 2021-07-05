@@ -4,6 +4,7 @@ metadata:
   name: cyberdock-web
   namespace: {{.Values.namespace}}
   labels:
+    app: cyberdock-web
     {{- include "cyberdock.labels" . | nindent 4 }}
   annotations:
     kompose.cmd: kompose convert -f ../docker-compose.yml
@@ -13,11 +14,13 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "cyberdock.selectorLabels" . | nindent 6 }}
+      app: cyberdock-web
   strategy:
     type: Recreate
   template:
     metadata:
+      labels:
+        app: cyberdock-web
       annotations:
         kompose.cmd: kompose convert -f ../docker-compose.yml
         kompose.version: 1.21.0 (HEAD)
@@ -35,7 +38,7 @@ spec:
               value: {{.Values.cyberdock.REDIS_URL}}
           image: {{ .Values.cyberdock.image }}:{{ .Values.cyberdock.tag }}
           imagePullPolicy: ""
-          name: web
+          name: cyberdock-web
           ports:
             - containerPort: 8000
           resources: {}

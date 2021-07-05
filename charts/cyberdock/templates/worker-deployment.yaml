@@ -4,7 +4,7 @@ metadata:
   name: cyberdock-worker
   namespace: {{.Values.namespace}}
   labels:
-    cyberdock: worker
+    app: cyberdock-worker
     {{- include "cyberdock.labels" . | nindent 4 }}
   annotations:
     kompose.cmd: kompose convert -f ../docker-compose.yml
@@ -14,8 +14,7 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      # cyberdock: worker
-      {{- include "cyberdock.selectorLabels" . | nindent 6 }}
+      app: cyberdock-worker
   strategy:
     type: Recreate
   template:
@@ -25,7 +24,7 @@ spec:
         kompose.version: 1.21.0 (HEAD)
       creationTimestamp: null
       labels:
-        cyberdock: worker
+        app: cyberdock-worker
     spec:
       containers:
         - args:

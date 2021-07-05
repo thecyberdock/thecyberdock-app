@@ -8,7 +8,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - name: "Node port"
+    - name: cyberdock-web-svc-port
       port: 8000
       nodePort: {{.Values.cyberdock.nodePort}}
       targetPort: 8000

@@ -13,7 +13,7 @@ the latest versions of the packages.  You can then run `helm search repo
 
 To install the cyberdock chart:
 
-    helm install cyberdock <alias>/<chart-name>
+    helm install cyberdock <alias>/cyberdock
 
 To uninstall the chart:
 

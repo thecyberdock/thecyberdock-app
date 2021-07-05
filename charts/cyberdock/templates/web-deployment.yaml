@@ -4,7 +4,6 @@ metadata:
   name: cyberdock-web
   namespace: {{.Values.namespace}}
   labels:
-    cyberdock: web
     {{- include "cyberdock.labels" . | nindent 4 }}
   annotations:
     kompose.cmd: kompose convert -f ../docker-compose.yml
@@ -14,7 +13,6 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      # cyberdock: web
       {{- include "cyberdock.selectorLabels" . | nindent 6 }}
   strategy:
     type: Recreate
@@ -24,8 +22,6 @@ spec:
         kompose.cmd: kompose convert -f ../docker-compose.yml
         kompose.version: 1.21.0 (HEAD)
       creationTimestamp: null
-      labels:
-        cyberdock: web
     spec:
       containers:
         - env:

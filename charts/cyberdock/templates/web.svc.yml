@@ -13,5 +13,5 @@ spec:
       nodePort: {{.Values.cyberdock.nodePort}}
       targetPort: 8000
   selector:
-    app: cyberdock.web
+    app: cyberdock-web
     {{- include "cyberdock.selectorLabels" . | nindent 4 }}

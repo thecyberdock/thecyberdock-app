@@ -25,7 +25,7 @@ spec:
         kompose.version: 1.21.0 (HEAD)
       creationTimestamp: null
       labels:
-        io.kompose.service: worker
+        cyberdock: worker
     spec:
       containers:
         - args:

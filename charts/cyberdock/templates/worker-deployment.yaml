@@ -29,6 +29,7 @@ spec:
       containers:
         - args:
             - celery
+            - -A cyberblade_project.celery
             - worker
             - -l
             - info

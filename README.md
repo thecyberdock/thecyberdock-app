@@ -18,3 +18,23 @@ To install the cyberdock chart:
 To uninstall the chart:
 
     helm delete cyberdock
+
+  
+ 
+Minimal values.yml file
+  
+  
+```yml
+namespace: cyberdock
+
+cyberdock:
+  nodePort: 31525
+  image: thecyberdock/thecyberdock-app
+  tag: latest
+  SECRET_KEY: example
+  REDIS_URL: redis://example/redis
+  ELASTIC_URL: https://elastic.example.com/
+  DATABASE_URL:  postgres://example:example/db
+
+
+```

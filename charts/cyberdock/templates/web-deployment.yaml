@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cyberdock.web
+  name: cyberdock-web
   namespace: {{.Values.namespace}}
   labels:
     cyberdock: web

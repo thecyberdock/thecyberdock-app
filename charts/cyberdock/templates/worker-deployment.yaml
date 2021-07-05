@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "cyberdock.worker"
+  name: cyberdock-worker
   namespace: {{.Values.namespace}}
   labels:
     cyberdock: worker

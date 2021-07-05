@@ -3,6 +3,19 @@ entries:
   cyberdock:
   - apiVersion: v2
     appVersion: 1.17.0
+    created: "2021-07-05T13:01:08.109968246Z"
+    description: |
+      Chart ready to deploy the Cyberdock application in the k8S environment
+
+      Will require setup for dependencies right now
+    digest: 725b4996093ee3d3e3808c9e4567f9221b02b1341eeda7d887c96920a44a8ebf
+    name: cyberdock
+    type: application
+    urls:
+    - https://github.com/thecyberdock/thecyberdock-app/releases/download/cyberdock-0.1.6/cyberdock-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: 1.17.0
     created: "2021-07-05T12:49:45.337265703Z"
     description: |
       Chart ready to deploy the Cyberdock application in the k8S environment

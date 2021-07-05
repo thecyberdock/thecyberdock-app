@@ -1,0 +1,25 @@
+# Default values for cyberdock.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+elasticReplicaCount: 1
+
+imagePullSecrets: []
+
+namespace: cyberdock
+
+cyberdock:
+  nodePort: 31525
+  image: thecyberdock/thecyberdock-app
+  tag: latest
+  SECRET_KEY: example
+  REDIS_URL: redis://example/redis
+  ELASTIC_URL: https://elastic.example.com/
+  DATABASE_URL:  postgres://example:example/db
+
+podSecurityContext:
+  fsGroup: 2000
+
+securityContext:
+  runAsNonRoot: true

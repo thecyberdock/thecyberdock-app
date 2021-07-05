@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cyberdock.web
+  namespace: {{.Values.namespace}}
+  labels:
+    cyberdock: web
+    {{- include "cyberdock.labels" . | nindent 4 }}
+  annotations:
+    kompose.cmd: kompose convert -f ../docker-compose.yml
+    kompose.version: 1.21.0 (HEAD)
+  creationTimestamp: null
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      # cyberdock: web
+      {{- include "cyberdock.selectorLabels" . | nindent 6 }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f ../docker-compose.yml
+        kompose.version: 1.21.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        cyberdock: web
+    spec:
+      containers:
+        - env:
+            - name: SECRET_KEY
+              value: {{ .Values.cyberdock.SECRET_KEY }}
+            - name: DATABASE_URL
+              value: {{ .Values.cyberdock.DATABASE_URL }}
+            - name: ELASTIC_URL
+              value: {{.Values.cyberdock.ELASTIC_URL}}
+            - name: REDIS_URL
+              value: {{.Values.cyberdock.REDIS_URL}}
+          image: {{ .Values.cyberdock.image }}:{{ .Values.cyberdock.tag }}
+          imagePullPolicy: ""
+          name: web
+          ports:
+            - containerPort: 8000
+          resources: {}
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred
+      serviceAccountName: ""
+status: {}

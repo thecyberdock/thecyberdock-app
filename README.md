@@ -50,6 +50,34 @@ cyberdock:
 
 ```
 
+#### Open shift instructions
+
+1. Create new project 
+
+```
+oc new-project cyberdock
+```
+
+2. Add helm repo
+
+```
+  helm repo add <alias> https://thecyberdock.github.io/thecyberdock-app/  
+```
+
+3. Update repo
+
+```
+helm repo update
+```
+
+4. Install 
+
+```
+ helm install cyberdock <alias>/cyberdock
+```
+
+
+
 Web UI would be available on the Node port specified in the configuration
 
 By default only 1 replica is deployed

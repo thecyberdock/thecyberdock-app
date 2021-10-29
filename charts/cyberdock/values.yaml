@@ -9,19 +9,51 @@ imagePullSecrets: []
 
 namespace: cyberdock
 
+api:
+  version: v2.0.10
+  port: 8080
+  debug: false
+
 cyberdock:
-  nodePort: 31525
   image: thecyberdock/thecyberdock-app
   tag: latest
-  HOST: 127.0.0.1
+  HOST: 0.0.0.0
   PORT: 8000
-  SECRET_KEY: example
-  REDIS_URL: redis://example/redis
-  ELASTIC_URL: https://elastic.example.com/
-  DATABASE_URL:  postgres://example:example/db
+  ACTION_BASE: http://cyberdock-web-svc.cyberdock.svc.cluster.local:8000
+  SECRET_KEY: secretsecretsecretsecretsecsecretsecretsecretsecretsec
+  HASURA_GRAPHQL_ADMIN_SECRET: admin
+  REDIS_URL: redis://:cyberdock@cyberdock-cache-master.cyberdock.svc.cluster.local
+  ELASTIC_URL: http://cyberdoc-search-coordinating.cyberdock.svc.cluster.local/
+  DATABASE_URL: postgres://postgres:cyberdock@cyberdock-db.cyberdock.svc.cluster.local/cyberdock
+  HASURA_ENDPOINT: http://cyberdock-api-svc.cyberdock.svc.cluster.local:8080
+  KEY: >
+    '{"type": "HS256", "key": "secretsecretsecretsecretsecsecretsecretsecretsecretsec"}'
 
 podSecurityContext:
   fsGroup: 2000
 
 securityContext:
   runAsNonRoot: true
+
+redis:
+  fullnameOverride: cyberdock-cache
+  auth:
+    password: cyberdock
+  replica:
+    replicaCount: 1
+
+postgresql:
+  fullnameOverride: cyberdock-db
+  postgresqlPassword: cyberdock
+  postgresqlUsername: postgres
+  postgresqlDatabase: cyberdock
+  postgresqlPostgresPassword: cyberdock
+
+elasticsearch:
+  fullnameOverride: cyberdock-search
+  coordinating:
+    replicas: 1
+    service:
+      type: LoadBalancer
+  master:
+    replicas: 1

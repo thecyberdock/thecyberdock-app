@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -39,8 +40,6 @@ spec:
               value: {{.Values.cyberdock.ELASTIC_URL}}
             - name: REDIS_URL
               value: {{.Values.cyberdock.REDIS_URL}}
-            - name: PORT
-              value: {{.Values.cyberdock.PORT | quote }}
             - name: HOST
               value: {{.Values.cyberdock.HOST | quote }}
           image: {{ .Values.cyberdock.image }}:{{ .Values.cyberdock.tag }}
@@ -48,7 +47,22 @@ spec:
           name: cyberdock-web
           ports:
             - containerPort: 8000
-          resources: {}
+              protocol: TCP
       restartPolicy: Always
-      serviceAccountName: ""
-status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: cyberdock-web-svc
+
+  labels: {{- include "cyberdock.labels" . | nindent 4 }}
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  selector:
+    app: cyberdock-web

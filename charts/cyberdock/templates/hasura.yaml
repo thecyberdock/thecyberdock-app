@@ -1,0 +1,69 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cyberdock-api
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: cyberdock-api
+    {{- include "cyberdock.labels" . | nindent 4}}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: cyberdock-api
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: cyberdock-api
+    spec:
+      restartPolicy: Always
+      containers:
+        - image: hasura/graphql-engine:{{.Values.api.version}}
+          imagePullPolicy: IfNotPresent
+          name: cyberdock-api
+          env:
+            - name: HASURA_GRAPHQL_DATABASE_URL
+              value: {{.Values.cyberdock.DATABASE_URL }}
+
+            - name: HASURA_GRAPHQL_ENABLE_CONSOLE
+              value: "false"
+
+            - name: HASURA_GRAPHQL_DEV_MODE
+              value: "false"
+
+            - name: HASURA_GRAPHQL_JWT_SECRET
+              value: {{.Values.cyberdock.KEY}}
+
+            - name: HASURA_GRAPHQL_ADMIN_SECRET
+              value: {{.Values.cyberdock.HASURA_GRAPHQL_ADMIN_SECRET}}
+
+            - name: HASURA_GRAPHQL_UNAUTHORIZED_ROLE
+              value: "anonyomus"
+            - name: HASURA_ACTION_BASE
+              value: {{.Values.cyberdock.ACTION_BASE}}
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: cyberdock-api-svc
+    {{- include "cyberdock.labels" . | nindent 4 }}
+  name: cyberdock-api-svc
+  namespace: {{ .Values.namespace }}
+spec:
+  ports:
+    - protocol: TCP
+      port: {{ .Values.api.port }}
+      targetPort: 8080
+  selector:
+    app: cyberdock-api
+  type: LoadBalancer

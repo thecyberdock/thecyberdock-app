@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: cyberdock-migrator
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "1"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    spec:
+      containers:
+        - args:
+            - make
+            - run-migrate-all
+          env:
+            - name: SECRET_KEY
+              value: {{ .Values.cyberdock.SECRET_KEY }}
+            - name: DATABASE_URL
+              value: {{ .Values.cyberdock.DATABASE_URL }}
+            - name: ELASTIC_URL
+              value: {{.Values.cyberdock.ELASTIC_URL}}
+            - name: REDIS_URL
+              value: {{.Values.cyberdock.REDIS_URL}}
+            - name: PORT
+              value: {{.Values.cyberdock.PORT | quote }}
+            - name: HOST
+              value: {{.Values.cyberdock.HOST | quote }}
+            - name: ENDPOINT
+              value: {{.Values.cyberdock.HASURA_ENDPOINT}}
+            - name: HASURA_ADMIN_SECRET
+              value: {{.Values.cyberdock.HASURA_GRAPHQL_ADMIN_SECRET}}
+
+          image: {{ .Values.cyberdock.image }}:{{ .Values.cyberdock.tag }}
+          imagePullPolicy: Always
+          name: cyberdock-web
+      restartPolicy: Never
+
+  backoffLimit: 4

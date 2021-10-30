@@ -27,6 +27,7 @@ jobs:
           
       - name: Helm dependency update
         run: |
+          helm repo add bitnami https://charts.bitnami.com/bitnami
           helm dependency update ./charts/cyberdock
 
       - name: Run chart-releaser

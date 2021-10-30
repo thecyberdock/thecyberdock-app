@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cyberdock-web-ui
+  namespace: {{.Values.namespace}}
+  labels:
+    app: cyberdock-web-ui
+    {{- include "cyberdock.labels" . | nindent 4 }}
+  creationTimestamp: null
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: cyberdock-web-ui
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cyberdock-web-ui
+      annotations:
+        kompose.cmd: kompose convert -f ../docker-compose.yml
+        kompose.version: 1.21.0 (HEAD)
+      creationTimestamp: null
+    spec:
+      containers:
+        - env:
+          image: {{ .Values.cyberdock.uiimage }}:{{ .Values.cyberdock.tag }}
+          imagePullPolicy: Always
+          name: cyberdock-web-ui
+          ports:
+            - containerPort: 80
+              protocol: TCP
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: cyberdock-web-ui-svc
+  labels: {{- include "cyberdock.labels" . | nindent 4 }}
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8060
+      targetPort: 80
+  selector:
+    app: cyberdock-web-ui

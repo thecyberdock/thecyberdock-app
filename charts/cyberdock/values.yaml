@@ -16,6 +16,7 @@ api:
 
 cyberdock:
   image: thecyberdock/thecyberdock-app
+  uiimage: thecyberdock/ui
   tag: latest
   HOST: 0.0.0.0
   PORT: 8000

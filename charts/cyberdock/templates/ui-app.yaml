@@ -49,3 +49,36 @@ spec:
       targetPort: 80
   selector:
     app: cyberdock-web-ui
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-ui-ingress
+  namespace: {{ .Values.namespace}}
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/add-base-url: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/enable-cors: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /api/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: cyberdock-api-svc
+                port:
+                  number: 8080
+
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: cyberdock-web-ui-svc
+                port:
+                  number: 8060

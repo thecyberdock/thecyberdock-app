@@ -67,6 +67,14 @@ spec:
   rules:
     - http:
         paths:
+          - path: /rest/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: cyberdock-web-svc
+                port:
+                  number: 8000
+
           - path: /api/?(.*)
             pathType: Prefix
             backend:

@@ -27,6 +27,11 @@ spec:
         kompose.version: 1.21.0 (HEAD)
       creationTimestamp: null
     spec:
+      volumes:
+      - name: media-vol
+        persistentVolumeClaim:
+          claimName: web-pvc
+          readOnly: false
       containers:
         - args:
             - python
@@ -48,6 +53,10 @@ spec:
           ports:
             - containerPort: 8000
               protocol: TCP
+          volumeMounts:
+            - mountPath: /run/media
+              name: media-vol
+              readOnly: false
       restartPolicy: Always
 
 ---

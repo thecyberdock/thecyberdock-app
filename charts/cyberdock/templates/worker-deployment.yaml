@@ -26,6 +26,12 @@ spec:
       labels:
         app: cyberdock-worker
     spec:
+      volumes:
+      - name: media-vol
+        persistentVolumeClaim:
+          claimName: web-pvc
+          readOnly: true
+
       containers:
         - command:
             - bash
@@ -43,6 +49,10 @@ spec:
           imagePullPolicy: Always
           name: worker
           resources: {}
+          volumeMounts:
+            - mountPath: /run/media
+              name: media-vol
+              readOnly: true
       restartPolicy: Always
       imagePullSecrets:
         - name: regcred

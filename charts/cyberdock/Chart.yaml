@@ -32,5 +32,5 @@ dependencies:
     version: 10.12.x
     repository: https://charts.bitnami.com/bitnami
   - name: elasticsearch
-    version: 17.x.x
-    repository: https://charts.bitnami.com/bitnami
+    version: 7.15.x
+    repository: https://helm.elastic.co

@@ -24,7 +24,7 @@ cyberdock:
   SECRET_KEY: secretsecretsecretsecretsecsecretsecretsecretsecretsec
   HASURA_GRAPHQL_ADMIN_SECRET: admin
   REDIS_URL: redis://:cyberdock@cyberdock-cache-master.cyberdock.svc.cluster.local
-  ELASTIC_URL: http://cyberdoc-search-coordinating.cyberdock.svc.cluster.local/
+  ELASTIC_URL: http://elasticsearch-master.cyberdock.svc.cluster.local:9200
   DATABASE_URL: postgres://postgres:cyberdock@cyberdock-db.cyberdock.svc.cluster.local/cyberdock
   HASURA_ENDPOINT: http://cyberdock-api-svc.cyberdock.svc.cluster.local:8080
   KEY: >
@@ -51,10 +51,27 @@ postgresql:
   postgresqlPostgresPassword: cyberdock
 
 elasticsearch:
-  fullnameOverride: cyberdock-search
-  coordinating:
-    replicas: 1
-    service:
-      type: LoadBalancer
-  master:
-    replicas: 1
+  replicas: 2
+  antiAffinity: "soft"
+  esJavaOpts: "-Xmx128m -Xms128m"
+  service:
+    type: LoadBalancer
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "512M"
+    limits:
+      cpu: "1000m"
+      memory: "512M"
+  # fullnameOverride: cyberdock-search
+  securityContext:
+    runAsUser: null
+  podSecurityContext:
+    fsGroup: null
+    runAsUser: null
+  volumeClaimTemplate:
+    accessModes: ["ReadWriteOnce"]
+    storageClassName: "standard"
+    resources:
+      requests:
+        storage: 500M

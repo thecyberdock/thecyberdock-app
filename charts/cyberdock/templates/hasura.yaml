@@ -21,15 +21,19 @@ spec:
     spec:
       restartPolicy: Always
       containers:
-        - image: hasura/graphql-engine:{{.Values.api.version}}
+        - name: cyberdock-api
+          {{- if .Values.api.arm64}}
+          image: hasura/graphql-engine-arm64:{{.Values.api.version}}
+          {{- else}}
+          image: hasura/graphql-engine:{{.Values.api.version}}
+          {{- end}}
           imagePullPolicy: IfNotPresent
-          name: cyberdock-api
           env:
             - name: HASURA_GRAPHQL_DATABASE_URL
               value: {{.Values.cyberdock.DATABASE_URL }}
 
             - name: HASURA_GRAPHQL_ENABLE_CONSOLE
-              value: "false"
+              value: "true"
 
             - name: HASURA_GRAPHQL_DEV_MODE
               value: "false"

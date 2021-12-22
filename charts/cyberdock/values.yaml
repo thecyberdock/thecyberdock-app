@@ -38,6 +38,9 @@ securityContext:
   runAsNonRoot: true
 
 redis:
+  image:
+    repository: redis
+    tag: 6.2.6
   fullnameOverride: cyberdock-cache
   auth:
     password: cyberdock
@@ -53,6 +56,8 @@ postgresql:
   postgresqlUsername: postgres
   postgresqlDatabase: cyberdock
   postgresqlPostgresPassword: cyberdock
+
+
 
 elasticsearch:
   replicas: 2

@@ -10,9 +10,9 @@ spec:
   # Specify "" as the storageClassName so it matches the PersistentVolume's StorageClass.
   # A nil storageClassName value uses the default StorageClass. For details, see
   # https://kubernetes.io/docs/concepts/storage/persistent-volumes/#class-1
-  storageClassName: standard
+  storageClassName: ""
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 8Gi
+      storage: 3Gi

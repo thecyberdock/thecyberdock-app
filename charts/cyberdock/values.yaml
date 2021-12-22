@@ -78,7 +78,6 @@ elasticsearch:
     runAsUser: null
   volumeClaimTemplate:
     accessModes: ["ReadWriteOnce"]
-    storageClassName: ""
     resources:
       requests:
-        storage: 500M
+        storage: 1Gi

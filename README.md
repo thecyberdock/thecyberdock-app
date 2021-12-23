@@ -15,7 +15,7 @@ Once Helm has been set up correctly, add the repo as follows:
 
 ``` sh
 
-  helm repo add <alias> https://thecyberdock.github.io/thecyberdock-app/  
+  helm repo add cyberdock https://thecyberdock.github.io/thecyberdock-app/  
 ```
 
 If you had already added this repo earlier, run `helm repo update` to retrieve
@@ -24,7 +24,7 @@ the latest versions of the packages.  You can then run `helm search repo
 
 To install the cyberdock chart:
 
-    helm install cyberdock <alias>/cyberdock
+    helm install cyberdock cyberdock/cyberdock --create-namespace -n cyberdock
 
 To uninstall the chart:
 

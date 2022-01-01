@@ -25,7 +25,8 @@ cyberdock:
   SECRET_KEY: secretsecretsecretsecretsecsecretsecretsecretsecretsec
   HASURA_GRAPHQL_ADMIN_SECRET: admin
   REDIS_URL: redis://:cyberdock@cyberdock-cache-master.cyberdock.svc.cluster.local
-  ELASTIC_URL: http://elasticsearch-master.cyberdock.svc.cluster.local:9200
+  ELASTIC_URL: http://cyberdock-search.cyberdock.svc.cluster.local:9200
+  ELASTIC_REMOTE_URL: http://cyberdock-search.cyberdock.svc.cluster.local:9200
   DATABASE_URL: postgres://postgres:cyberdock@cyberdock-db.cyberdock.svc.cluster.local/cyberdock
   HASURA_ENDPOINT: http://cyberdock-api-svc.cyberdock.svc.cluster.local:8080
   KEY: >
@@ -58,6 +59,7 @@ postgresql:
   postgresqlPostgresPassword: cyberdock
 
 elasticsearch:
+  fullnameOverride: cyberdock-search
   replicas: 2
   antiAffinity: "soft"
   esJavaOpts: "-Xmx128m -Xms128m"

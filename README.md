@@ -30,6 +30,11 @@ To uninstall the chart:
 
     helm delete cyberdock
 
+To upgrade when new version is available:
+
+```
+helm upgrade cyberdock cyberdock/cyberdock
+```
 #### Open shift instructions
 
 1. Create new project 

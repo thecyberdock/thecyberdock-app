@@ -22,7 +22,9 @@ spec:
       annotations:
         kompose.cmd: kompose convert -f ../docker-compose.yml
         kompose.version: 1.21.0 (HEAD)
-        {{if .Values.forceRestart }}helm.sh/deploy-date: "{{ .Release.Time.Seconds }}"{{end}}
+        {{if .Values.forceRestart }}
+        helm.sh/deploy-date: {{ now | quote }}
+        {{end}}
       creationTimestamp: null
       labels:
         app: cyberdock-worker

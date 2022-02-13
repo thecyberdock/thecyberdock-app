@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cyberdock-scheduler
+  namespace: {{.Values.namespace}}
+  labels:
+    app: cyberdock-scheduler
+    {{- include "cyberdock.labels" . | nindent 4 }}
+  annotations:
+    kompose.cmd: kompose convert -f ../docker-compose.yml
+    kompose.version: 1.21.0 (HEAD)
+  creationTimestamp: null
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: cyberdock-scheduler
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f ../docker-compose.yml
+        kompose.version: 1.21.0 (HEAD)
+        {{if .Values.forceRestart }}
+        helm.sh/deploy-date: {{ now | quote }}
+        {{end}}
+      creationTimestamp: null
+      labels:
+        app: cyberdock-scheduler
+    spec:
+      volumes:
+      - name: media-vol
+        persistentVolumeClaim:
+          claimName: web-pvc
+          readOnly: true
+
+      containers:
+        - command:
+            - bash
+            - runscheduler.sh
+          env:
+            - name: SECRET_KEY
+              value: {{ .Values.cyberdock.SECRET_KEY }}
+            - name: DATABASE_URL
+              value: {{ .Values.cyberdock.DATABASE_URL }}
+            - name: ELASTIC_URL
+              value: {{.Values.cyberdock.ELASTIC_URL}}
+            - name: REDIS_URL
+              value: {{.Values.cyberdock.REDIS_URL}}
+          image: {{ .Values.cyberdock.image }}:{{ .Values.cyberdock.tag }}
+          imagePullPolicy: Always
+          name: worker
+          resources: {}
+          volumeMounts:
+            - mountPath: /run/media
+              name: media-vol
+              readOnly: true
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred
+      serviceAccountName: ""
+status: {}

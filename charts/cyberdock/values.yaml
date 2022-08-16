@@ -7,11 +7,9 @@ replicaCount: 1
 
 imagePullSecrets: []
 
-namespace: cyberdock
-
 api:
   arm64: false
-  version: v2.8.4
+  version: v2.9.0
   port: 8080
   debug: false
 

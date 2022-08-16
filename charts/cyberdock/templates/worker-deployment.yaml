@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cyberdock-worker
-  namespace: {{.Values.namespace}}
+  namespace: {{ .Release.Namespace }}
   labels:
     app: cyberdock-worker
     {{- include "cyberdock.labels" . | nindent 4 }}

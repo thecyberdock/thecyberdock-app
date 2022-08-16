@@ -27,10 +27,10 @@ appVersion: "1.18.0"
 
 dependencies:
   - name: redis
-    version: 15.5.x
+    version: 17.0.x
     repository: https://charts.bitnami.com/bitnami
   - name: postgresql
-    version: 10.12.x
+    version: 11.7.x
     repository: https://charts.bitnami.com/bitnami
   - name: elasticsearch
     version: 7.15.x

@@ -1,12 +1,12 @@
 dependencies:
 - name: redis
   repository: https://charts.bitnami.com/bitnami
-  version: 15.5.5
+  version: 17.0.11
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
-  version: 10.12.9
+  version: 11.7.2
 - name: elasticsearch
   repository: https://helm.elastic.co
   version: 7.15.0
-digest: sha256:452c7653130d2b718b5351b750ed934fa1dbfccc8357e7422faf3df5f08fd371
-generated: "2021-11-26T15:26:45.879272908+02:00"
+digest: sha256:a5ad1b9b7fd619ff23e734e382c5e5b58f1ed26d14577b5151e51cc8d0083b56
+generated: "2022-08-18T01:00:34.873464144+03:00"

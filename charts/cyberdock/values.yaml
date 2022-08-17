@@ -25,7 +25,7 @@ cyberdock:
   REDIS_URL: redis://:cyberdock@cyberdock-cache-master.{{.Release.Namespace}}.svc.cluster.local
   ELASTIC_URL: http://cyberdock-search.{{.Release.Namespace}}.svc.cluster.local:9200
   ELASTIC_REMOTE_URL: http://cyberdock-search.{{.Release.Namespace}}.svc.cluster.local:9200
-  DATABASE_URL: postgres://postgres:cyberdock@cyberdock-db.{{.Release.Namespace}}.svc.cluster.local/cyberdock
+  DATABASE_URL: postgres://cyberdock:cyberdock@cyberdock-db.{{.Release.Namespace}}.svc.cluster.local/cyberdock
   HASURA_ENDPOINT: http://cyberdock-api-svc.{{.Release.Namespace}}.svc.cluster.local:8080
   KEY: >
     '{"type": "HS256", "key": "secretsecretsecretsecretsecsecretsecretsecretsecretsec"}'
@@ -45,7 +45,6 @@ redis:
     password: cyberdock
   replica:
     replicaCount: 1
-
 
 postgresql:
   # image:

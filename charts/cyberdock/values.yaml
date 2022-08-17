@@ -19,14 +19,14 @@ cyberdock:
   tag: latest
   HOST: 0.0.0.0
   PORT: 8000
-  ACTION_BASE: http://cyberdock-web-svc.cyberdock.svc.cluster.local:8000
+  ACTION_BASE: http://cyberdock-web-svc.{{.Release.Namespace}}.svc.cluster.local:8000
   SECRET_KEY: secretsecretsecretsecretsecsecretsecretsecretsecretsec
   HASURA_GRAPHQL_ADMIN_SECRET: admin
-  REDIS_URL: redis://:cyberdock@cyberdock-cache-master.cyberdock.svc.cluster.local
-  ELASTIC_URL: http://cyberdock-search.cyberdock.svc.cluster.local:9200
-  ELASTIC_REMOTE_URL: http://cyberdock-search.cyberdock.svc.cluster.local:9200
-  DATABASE_URL: postgres://postgres:cyberdock@cyberdock-db.cyberdock.svc.cluster.local/cyberdock
-  HASURA_ENDPOINT: http://cyberdock-api-svc.cyberdock.svc.cluster.local:8080
+  REDIS_URL: redis://:cyberdock@cyberdock-cache-master.{{.Release.Namespace}}.svc.cluster.local
+  ELASTIC_URL: http://cyberdock-search.{{.Release.Namespace}}.svc.cluster.local:9200
+  ELASTIC_REMOTE_URL: http://cyberdock-search.{{.Release.Namespace}}.svc.cluster.local:9200
+  DATABASE_URL: postgres://postgres:cyberdock@cyberdock-db.{{.Release.Namespace}}.svc.cluster.local/cyberdock
+  HASURA_ENDPOINT: http://cyberdock-api-svc.{{.Release.Namespace}}.svc.cluster.local:8080
   KEY: >
     '{"type": "HS256", "key": "secretsecretsecretsecretsecsecretsecretsecretsecretsec"}'
 

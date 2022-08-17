@@ -30,7 +30,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: HASURA_GRAPHQL_DATABASE_URL
-              value: {{.Values.cyberdock.DATABASE_URL }}
+              value: {{tpl .Values.cyberdock.DATABASE_URL . }}
 
             - name: HASURA_GRAPHQL_ENABLE_CONSOLE
               value: "true"
@@ -47,7 +47,7 @@ spec:
             - name: HASURA_GRAPHQL_UNAUTHORIZED_ROLE
               value: "anonymous"
             - name: HASURA_ACTION_BASE
-              value: {{.Values.cyberdock.ACTION_BASE}}
+              value: {{tpl .Values.cyberdock.ACTION_BASE .}}
           ports:
             - containerPort: 8080
               protocol: TCP

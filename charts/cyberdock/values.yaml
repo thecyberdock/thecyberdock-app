@@ -46,17 +46,14 @@ redis:
   replica:
     replicaCount: 1
 
+
 postgresql:
-  image:
-    repository: postgres
-    tag: 12.2
+  # image:
+    # repository: postgres
+    # tag: 12.2
   fullnameOverride: cyberdock-db
-  volumePermissions:
-    enabled: false
-  # livenessProbe:
-  #   initialDelaySeconds: 100
-  # readinessProbe:
-  #   initialDelaySeconds: 100
+  # volumePermissions:
+    # enabled: false
   auth:
     postgresPassword: cyberdock
     username: cyberdock

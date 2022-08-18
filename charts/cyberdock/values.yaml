@@ -20,6 +20,7 @@ cyberdock:
   HOST: 0.0.0.0
   PORT: 8000
   ACTION_BASE: http://cyberdock-web-svc.{{.Release.Namespace}}.svc.cluster.local:8000
+  AUTH_HOOK: http://cyberdock-web-svc.{{.Release.Namespace}}.svc.cluster.local:8000/api/auth/validate
   SECRET_KEY: secretsecretsecretsecretsecsecretsecretsecretsecretsec
   HASURA_GRAPHQL_ADMIN_SECRET: admin
   REDIS_URL: redis://:cyberdock@cyberdock-cache-master.{{.Release.Namespace}}.svc.cluster.local

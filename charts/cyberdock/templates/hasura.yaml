@@ -37,10 +37,10 @@ spec:
 
             - name: HASURA_GRAPHQL_DEV_MODE
               value: "false"
-
-            - name: HASURA_GRAPHQL_JWT_SECRET
-              value: {{.Values.cyberdock.KEY}}
-
+            - name: HASURA_GRAPHQL_AUTH_HOOK
+              value: {{tpl .Values.cyberdock.AUTH_HOOK .}}
+            - name: HASURA_GRAPHQL_AUTH_HOOK_MODE
+              value: 'POST'
             - name: HASURA_GRAPHQL_ADMIN_SECRET
               value: {{.Values.cyberdock.HASURA_GRAPHQL_ADMIN_SECRET}}
 

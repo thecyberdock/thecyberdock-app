@@ -3,6 +3,28 @@ entries:
   cyberdock:
   - apiVersion: v2
     appVersion: 1.18.0
+    created: "2022-08-18T08:03:23.978468725Z"
+    dependencies:
+    - name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.0.x
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.7.x
+    - name: elasticsearch
+      repository: https://helm.elastic.co
+      version: 7.15.x
+    description: |
+      Chart ready to deploy the Cyberdock application in the k8S environment
+      Supports arm64 and amd64 architecture
+    digest: 43f7d0d4955a75e8c66c766f3af8aed41ad29b5c2df1172275494fc790df112d
+    name: cyberdock
+    type: application
+    urls:
+    - https://github.com/thecyberdock/thecyberdock-app/releases/download/cyberdock-1.0.8/cyberdock-1.0.8.tgz
+    version: 1.0.8
+  - apiVersion: v2
+    appVersion: 1.18.0
     created: "2022-08-18T05:35:18.891820399Z"
     dependencies:
     - name: redis

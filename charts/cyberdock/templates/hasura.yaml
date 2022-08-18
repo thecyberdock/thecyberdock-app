@@ -44,8 +44,6 @@ spec:
             - name: HASURA_GRAPHQL_ADMIN_SECRET
               value: {{.Values.cyberdock.HASURA_GRAPHQL_ADMIN_SECRET}}
 
-            - name: HASURA_GRAPHQL_UNAUTHORIZED_ROLE
-              value: "anonymous"
             - name: HASURA_ACTION_BASE
               value: {{tpl .Values.cyberdock.ACTION_BASE .}}
           ports:

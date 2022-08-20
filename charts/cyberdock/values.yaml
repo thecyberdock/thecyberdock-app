@@ -51,10 +51,12 @@ postgresql:
     repository: postgres
     tag: 12.2
   fullnameOverride: cyberdock-db
-  postgresqlPassword: cyberdock
-  postgresqlUsername: postgres
-  postgresqlDatabase: cyberdock
-  postgresqlPostgresPassword: cyberdock
+
+  auth:
+    password: cyberdock
+    username: postgres
+    database: cyberdock
+    postgresPassword: cyberdock
 
 elasticsearch:
   fullnameOverride: cyberdock-search

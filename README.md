@@ -15,7 +15,7 @@ Once Helm has been set up correctly, add the repo as follows:
 
 ``` sh
 
-  helm repo add cyberdock https://thecyberdock.github.io/thecyberdock-app/  
+  helm repo add cyberdock https://thecyberdock.github.io/cyberdock-application/
 ```
 
 If you had already added this repo earlier, run `helm repo update` to retrieve

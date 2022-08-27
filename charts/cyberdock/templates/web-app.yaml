@@ -50,7 +50,7 @@ spec:
               value: {{tpl .Values.cyberdock.REDIS_URL .}}
             - name: HOST
               value: {{.Values.cyberdock.HOST | quote }}
-          image: {{ .Values.cyberdock.image }}:{{ .Values.cyberdock.tag }}
+          image: {{ .Values.cyberdock.image }}:{{ .Values.cyberdock.backend.tag }}
           imagePullPolicy: Always
           name: cyberdock-web
           ports:

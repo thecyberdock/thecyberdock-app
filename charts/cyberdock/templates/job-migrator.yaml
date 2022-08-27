@@ -38,7 +38,7 @@ spec:
             - name: HASURA_ADMIN_SECRET
               value: {{.Values.cyberdock.HASURA_GRAPHQL_ADMIN_SECRET}}
 
-          image: {{ .Values.cyberdock.image }}:{{ .Values.cyberdock.tag }}
+          image: {{ .Values.cyberdock.image }}:{{ .Values.cyberdock.backend.tag }}
           imagePullPolicy: Always
           name: cyberdock-web
       restartPolicy: Never

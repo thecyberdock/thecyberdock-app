@@ -13,6 +13,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   allowVolumeExpansion: true
+  reclaimPolicy: Delete
   resources:
     requests:
       storage: 6Gi

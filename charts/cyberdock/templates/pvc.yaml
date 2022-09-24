@@ -12,6 +12,7 @@ spec:
   # https://kubernetes.io/docs/concepts/storage/persistent-volumes/#class-1
   accessModes:
     - ReadWriteOnce
+  allowVolumeExpansion: true
   resources:
     requests:
-      storage: 3Gi
+      storage: 6Gi

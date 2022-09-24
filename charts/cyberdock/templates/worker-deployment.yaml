@@ -62,7 +62,7 @@ spec:
               readOnly: true
             - mountPath: /run/temp
               name: reports-vol
-              readOnly: false
+              readOnly: true
       restartPolicy: Always
       imagePullSecrets:
         - name: regcred

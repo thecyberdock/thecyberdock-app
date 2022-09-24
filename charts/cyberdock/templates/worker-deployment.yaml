@@ -34,6 +34,10 @@ spec:
         persistentVolumeClaim:
           claimName: web-pvc
           readOnly: true
+      - name: reports-vol
+        persistentVolumeClaim:
+          claimName: web-pvc
+          readOnly: false
 
       containers:
         - command:
@@ -56,6 +60,9 @@ spec:
             - mountPath: /run/media
               name: media-vol
               readOnly: true
+            - mountPath: /run/temp
+              name: reports-vol
+              readOnly: false
       restartPolicy: Always
       imagePullSecrets:
         - name: regcred

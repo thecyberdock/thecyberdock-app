@@ -17,7 +17,7 @@ cyberdock:
   image: thecyberdock/thecyberdock-app
   uiimage: thecyberdock/ui
   backend: 
-    tag: 1.0.14
+    tag: 1.0.19
   frontend:
     tag: 1.0.9
   HOST: 0.0.0.0

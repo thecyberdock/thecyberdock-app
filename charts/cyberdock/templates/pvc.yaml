@@ -12,7 +12,6 @@ spec:
   # https://kubernetes.io/docs/concepts/storage/persistent-volumes/#class-1
   accessModes:
     - ReadWriteOnce
-  allowVolumeExpansion: true
   reclaimPolicy: Delete
   resources:
     requests:

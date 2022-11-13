@@ -22,11 +22,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: cyberdock-api
-          {{- if .Values.api.arm64}}
-          image: fedormelexin/graphql-engine-arm64:{{.Values.api.version}}
-          {{- else}}
           image: hasura/graphql-engine:{{.Values.api.version}}
-          {{- end}}
           imagePullPolicy: IfNotPresent
           env:
             - name: HASURA_GRAPHQL_DATABASE_URL

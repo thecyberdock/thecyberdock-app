@@ -8,8 +8,7 @@ replicaCount: 1
 imagePullSecrets: []
 
 api:
-  arm64: false
-  version: v2.10.1
+  version: v2.15.0
   port: 8080
   debug: false
 
@@ -17,7 +16,7 @@ cyberdock:
   image: thecyberdock/thecyberdock-app
   uiimage: thecyberdock/ui
   backend: 
-    tag: 1.0.40
+    tag: 1.1.1
   frontend:
     tag: 1.0.9
   HOST: 0.0.0.0

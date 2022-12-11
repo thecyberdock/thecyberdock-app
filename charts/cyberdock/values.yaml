@@ -8,7 +8,7 @@ replicaCount: 1
 imagePullSecrets: []
 
 api:
-  version: v2.15.0
+  version: v2.16.0-ce
   port: 8080
   debug: false
 

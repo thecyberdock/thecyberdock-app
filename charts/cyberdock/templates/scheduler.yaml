@@ -42,8 +42,6 @@ spec:
               value: {{ .Values.cyberdock.SECRET_KEY }}
             - name: DATABASE_URL
               value: {{tpl .Values.cyberdock.DATABASE_URL .}}
-            - name: ELASTIC_URL
-              value: {{tpl .Values.cyberdock.ELASTIC_URL .}}
             - name: REDIS_URL
               value: {{tpl .Values.cyberdock.REDIS_URL .}}
           image: {{ .Values.cyberdock.image }}:{{ .Values.cyberdock.backend.tag }}

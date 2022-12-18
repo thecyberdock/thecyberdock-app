@@ -21,6 +21,7 @@ cyberdock:
     tag: 1.0.9
   HOST: 0.0.0.0
   PORT: 8000
+  PULUMI_CONFIG_PASSPHRASE: cyberdock
   ACTION_BASE: http://cyberdock-web-svc.{{.Release.Namespace}}.svc.cluster.local:8000
   AUTH_HOOK: http://cyberdock-web-svc.{{.Release.Namespace}}.svc.cluster.local:8000/api/auth/validate
   SECRET_KEY: secretsecretsecretsecretsecsecretsecretsecretsecretsec

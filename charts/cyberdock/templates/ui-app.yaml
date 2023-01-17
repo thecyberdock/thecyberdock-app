@@ -78,16 +78,6 @@ spec:
                 port:
                   number: 8000
 
-
-          - path: /search/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: elasticsearch-master
-                port:
-                  number: 9200
-
-
           - path: /api/?(.*)
             pathType: Prefix
             backend:

@@ -34,6 +34,10 @@ spec:
         persistentVolumeClaim:
           claimName: web-pvc
           readOnly: true
+      - name: tmp-vol
+        persistentVolumeClaim:
+          claimName: web-pvc
+          readOnly: true
 
       containers:
         - command:
@@ -53,6 +57,9 @@ spec:
           name: worker
           resources: {}
           volumeMounts:
+            - mountPath: /run/tmp
+              name: tmp-vol
+              readOnly: false
             - mountPath: /run/media
               name: media-vol
               readOnly: true

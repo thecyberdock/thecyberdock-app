@@ -37,7 +37,7 @@ spec:
       - name: tmp-vol
         persistentVolumeClaim:
           claimName: web-pvc-tmp
-          readOnly: true
+          readOnly: false
 
       containers:
         - command:

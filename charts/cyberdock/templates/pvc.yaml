@@ -12,3 +12,18 @@ spec:
   resources:
     requests:
       storage: 6Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: web-pvc-tmp
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "cyberdock.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
